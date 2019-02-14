@@ -58,5 +58,19 @@ class Solution:
         :type s: str
         :rtype: bool
         """
+        d = {'}': '{', ']': '[', ')': '('}
 
-    
+        stack = [' ']
+
+        for c in s:
+            c2 = d.get(c, '')
+            if stack[-1] == c2:
+                stack.pop()
+            elif c2:
+                return False
+            else:
+                stack.append(c)
+        return len(stack) == 1
+
+s = Solution()
+print(s.isValid("("))
